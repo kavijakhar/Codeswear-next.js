@@ -6,7 +6,7 @@ const Tshirts = () => {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4 justify-center">
             <div className="lg:w-1/4 md:w-60 m-auto p-4 w-full shadow-lg mx-5 cursor-pointer my-3">
               <Link href={'/product/wear the code '} className="block relative h-48 rounded overflow-hidden">
                 <img alt="ecommerce" className="  h-[30vh] block m-auto" src="https://m.media-amazon.com/images/I/61Dl8WUFr7L._AC_UL480_QL65_.jpg" />
