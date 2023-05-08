@@ -1,4 +1,4 @@
-const mongoose = required("mongoose");
+const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema({
     title: {
@@ -30,14 +30,14 @@ const ProductSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        requiredd: true,
+        required: true,
     },
     availableQty: {
         type: Number,
-        requiredd: true,
-    },
-
-
+        required: true,
+    }
 }, { timeStamps: true });
 
-export default mongoose.model("Product", ProductSchema)
+mongoose.models={}
+
+export default mongoose.model("Product" , ProductSchema)

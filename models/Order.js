@@ -1,4 +1,4 @@
-const mongoose = required("mongoose");
+const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
     userId: {
@@ -32,4 +32,6 @@ const orderSchema = new mongoose.Schema({
 
 }, { timeStamps: true });
 
-export default mongoose.model("Order" , orderSchema)
+mongoose.models = {}
+
+export default mongoose.model("Order", orderSchema)
