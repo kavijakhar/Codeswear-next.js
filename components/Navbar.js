@@ -30,10 +30,10 @@ const Navbar = ({ cart, addtocart, removefromcart, clearcart, subTotal }) => {
             </div>
             <div className="nav ml-7 mt-2 ">
                 <ul className='flex items-center space-x-4 md:text-xl font-medium'>
-                    <Link href={'/tshirts'}> <li>Tshirts</li></Link>
-                    <Link href={'/hoodies'}> <li>Hoddies</li></Link>
-                    <Link href={'/stickers'}> <li>Stickers</li></Link>
-                    <Link href={'/mugs'}> <li>Mugs</li></Link>
+                    <Link href={'/tshirts'}> <li className='hover:text-pink-600'>Tshirts</li></Link>
+                    <Link href={'/hoodies'}> <li className='hover:text-pink-600'>Hoddies</li></Link>
+                    <Link href={'/stickers'}> <li className='hover:text-pink-600'>Stickers</li></Link>
+                    <Link href={'/mugs'}> <li className='hover:text-pink-600'>Mugs</li></Link>
                 </ul>
             </div>
             <div className="cart flex right-0 absolute mx-5 font-medium">
@@ -51,7 +51,7 @@ const Navbar = ({ cart, addtocart, removefromcart, clearcart, subTotal }) => {
 
                         return <li key={k}>
                             <div className="item flex my-5">
-                                <div className="w-2/3  font-semibold">{cart[k].name}</div>
+                                <div className="w-2/3  font-semibold">{cart[k].name} ({cart[k].size }/ {cart[k].variant})</div>
                                 <div className="w-1/3  flex items-center justify-center  font-bold text-pink-500 ml-2 "> <AiFillMinusCircle className='text-2xl cursor-pointer' onClick={() => { removefromcart(k, 1, cart[k].size, cart[k].price, cart[k].name, cart[k].variant) }} /><span className='mx-1 bg-white rounded-sm text-pink-500 px-2 text-xl'>{cart[k].qty}</span><AiFillPlusCircle onClick={() => { addtocart(k, 1, cart[k].size, cart[k].price, cart[k].name, cart[k].variant) }} className='text-2xl  cursor-pointer' /></div>
                             </div>
                         </li>
