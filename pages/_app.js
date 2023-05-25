@@ -4,8 +4,11 @@ import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from "next/router";
+import LoadingBar from 'react-top-loading-bar'
+
 
 export default function App({ Component, pageProps }) {
+  const [progress, setProgress] = useState(0)
   const [cart, setCart] = useState({});
   const [subTotal, setsubTotal] = useState(0);
   const [user, setUser] = useState({ value: null })
@@ -15,11 +18,18 @@ export default function App({ Component, pageProps }) {
   const Logout = () => {
     localStorage.removeItem('token');
     setUser({ value: null })
-     router.push('/login')
-  
+    router.push('/login')
+
   }
 
   useEffect(() => {
+    router.events.on('routeChangeStart', () => {
+      setProgress(40)
+    });
+    router.events.on('routeChangeComplete', () => {
+      setProgress(100)
+    });
+
     try {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
@@ -90,6 +100,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      <LoadingBar color='#FF69B4' waitingTime={400} progress={progress} onLoaderFinished={()=>{setProgress(0)}} />
       <Navbar
         Logout={Logout}
         user={user}

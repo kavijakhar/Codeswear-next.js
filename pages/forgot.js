@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const forgot = () => {
+
+const Forgot = () => {
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            router.push('/')
+        }
+    }, [])  
+
     return (
         <>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -21,12 +32,12 @@ const forgot = () => {
                                 <label for="email-address" className="sr-only">Email address</label>
                                 <input id="email-address" name="email" type="email" autocomplete="email" required className="relative block w-full  bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Email address" />
                             </div>
-            
+
                         </div>
 
                         <div>
                             <button type="submit" className="group relative flex w-full justify-center rounded-md bg-pink-600 py-2 px-3 text-sm font-semibold text-white hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600">
-                 
+
                                 Continue
                             </button>
                         </div>
@@ -37,4 +48,4 @@ const forgot = () => {
     )
 }
 
-export default forgot
+export default Forgot

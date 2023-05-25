@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,6 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const router = useRouter();
   const [credentials, setCredentials] = useState({ email: "", password: "" })
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      router.push('/')
+    }
+  }, [])
+
+
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
@@ -25,7 +33,7 @@ const Login = () => {
     const response = await res.json()
     console.log(response)
     if (!response.success) {
-    
+
       toast.error(response.error, {
         position: "top-right",
         autoClose: 2000,
