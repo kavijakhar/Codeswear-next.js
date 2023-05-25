@@ -18,28 +18,30 @@ const Login = () => {
     let res = await fetch(`http://localhost:3000/api/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'  
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
     })
     const response = await res.json()
+    console.log(response)
     if (!response.success) {
-
+    
       toast.error(response.error, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
-        closeOnClick: true, 
+        closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,                             
+        progress: undefined,
         theme: "light",
-      });ij
+      });
     } else {
+      localStorage.setItem('token', response.token)
       setTimeout(() => {
         router.push('/')
       }, 2000);
-      toast.success('🦄 You have Created Your account', {
+      toast.success(` Welcome back, ${response.name} 🙂`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -58,7 +60,7 @@ const Login = () => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
@@ -74,7 +76,7 @@ const Login = () => {
             <div className="-space-y-px rounded-md shadow-sm">
               <div className='my-10'>
                 <label htmlFor="email-address" className="sr-only">Email address</label>
-                <input id="email" value={credentials.email}  onChange={handleChange} name="email" type="email" autoComplete="email" required className="relative block w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Email address" />
+                <input id="email" value={credentials.email} onChange={handleChange} name="email" type="email" autoComplete="email" required className="relative block w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Email address" />
               </div>
               <div className='my-10'>
                 <label htmlFor="password" className="sr-only">Password</label>

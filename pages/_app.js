@@ -2,12 +2,22 @@ import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import "@/styles/globals.css";
+import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState({});
   const [subTotal, setsubTotal] = useState(0);
-const router = useRouter();
+  const [user, setUser] = useState({ value: null })
+  const [key, setKey] = useState(0)
+  const router = useRouter();
+
+  const Logout = () => {
+    localStorage.removeItem('token');
+    setUser({ value: null })
+     router.push('/login')
+  
+  }
 
   useEffect(() => {
     try {
@@ -20,8 +30,13 @@ const router = useRouter();
       console.log(error);
       localStorage.clear();
     }
+    const token = localStorage.getItem('token')
+    if (token) {
+      setUser({ value: token })
+      setKey(Math.random())
+    }
 
-  }, []);
+  }, [router.query]);
 
   const savecart = (mycart) => {
     localStorage.setItem("cart", JSON.stringify(mycart));
@@ -32,7 +47,7 @@ const router = useRouter();
       subt += mycart[keys[i]]["price"] * mycart[keys[i]].qty;
     }
     setsubTotal(subt);
-  };  
+  };
 
   const addtocart = (itemcode, qty, size, price, name, variant) => {
     let mycart = cart;
@@ -76,7 +91,9 @@ const router = useRouter();
   return (
     <>
       <Navbar
-        key={subTotal}
+        Logout={Logout}
+        user={user}
+        key={key}
         cart={cart}
         addtocart={addtocart}
         removefromcart={removefromcart}
