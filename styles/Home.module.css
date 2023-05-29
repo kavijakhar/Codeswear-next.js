@@ -15,7 +15,7 @@
   }
   .home .banner{
     color:#fff;
-    font-size: 5rem;
+    font-size: 4rem;
     text-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
   }
   
@@ -131,6 +131,7 @@
   .home .banner{
     color:#fff;
     font-size: 2rem;
+    padding: 8px;
     text-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
   }
   

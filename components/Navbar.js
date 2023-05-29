@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 import { BsFillBagCheckFill } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
+import TopMain from './Topmain';
 
 const Navbar = ({ Logout, user, cart, addtocart, removefromcart, clearcart, subTotal }) => {
     // console.log(cart, addtocart, removefromcart, clearcart, subTotal)
@@ -80,7 +81,9 @@ const Navbar = ({ Logout, user, cart, addtocart, removefromcart, clearcart, subT
                 </div>
             </div>
 
+   
         </div >
+        
     )
 }
 
