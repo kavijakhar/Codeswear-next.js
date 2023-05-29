@@ -43,8 +43,8 @@ export default function App({ Component, pageProps }) {
     const token = localStorage.getItem('token')
     if (token) {
       setUser({ value: token })
-      setKey(Math.random())
     }
+    setKey(Math.random())
 
   }, [router.query]);
 
@@ -79,6 +79,8 @@ export default function App({ Component, pageProps }) {
     router.push('/checkout')
   }
 
+
+
   const clearcart = () => {
     setCart({});
     savecart({});
@@ -100,7 +102,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <LoadingBar color='#FF69B4' waitingTime={400} progress={progress} onLoaderFinished={()=>{setProgress(0)}} />
+      <LoadingBar color='rgb(1 140 164)' waitingTime={400} progress={progress} onLoaderFinished={()=>{setProgress(0)}} />
       <Navbar
         Logout={Logout}
         user={user}
